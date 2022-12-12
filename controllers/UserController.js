@@ -1,4 +1,4 @@
-const { User } = require("../model/User");
+const { User } = require("../model/model");
 
 const userController = {
   addUser: async (req, res) => {
@@ -8,6 +8,14 @@ const userController = {
       res.status(200).json(saveUser);
     } catch (error) {
       res.status(500).json(error);
+    }
+  },
+  getAllUser: async (req, res) => {
+    try {
+      const allUsers = await User.find();
+      res.status(200).json(allUsers);
+    } catch (err) {
+      res.status(500).json(err);
     }
   },
 };
