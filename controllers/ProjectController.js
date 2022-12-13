@@ -18,6 +18,24 @@ const projectController = {
       res.status(500).json(err);
     }
   },
+  updateProject: async (req, res) => {
+    try {
+      await Project.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
+      res.status(200).json("Project updated");
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  deleteProject: async (req, res) => {
+    try {
+      const deleteProject = await Project.findOneAndDelete(req.params.id);
+      res.status(200).json("Project deleted");
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = projectController;

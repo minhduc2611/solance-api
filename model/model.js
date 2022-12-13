@@ -15,31 +15,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const taskSchema = new mongoose.Schema({
-  startDate: {
-    type: String,
-  },
-  endDate: {
-    type: String,
-  },
-  devOwner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  name: {
-    type: String,
-    require: true,
-  },
-  description: {
-    type: String,
-    require: true,
-  },
-  project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
-  },
-});
-
 const projectSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -55,14 +30,13 @@ const projectSchema = new mongoose.Schema({
   },
   tasks: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Task",
+      name: { type: String, required: true },
+      description: { type: String, required: true },
     },
   ],
 });
 
 let User = mongoose.model("User", userSchema);
-let Task = mongoose.model("Task", taskSchema);
 let Project = mongoose.model("Project", projectSchema);
 
-module.exports = { User, Task, Project };
+module.exports = { User, Project };
