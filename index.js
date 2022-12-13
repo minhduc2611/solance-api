@@ -6,7 +6,6 @@ const cors = require("cors");
 
 const UserRoutes = require("./routes/UserRoutes");
 const ProjectRoutes = require("./routes/ProjectRoutes");
-const TaskRoutes = require("./routes/TaskRoutes");
 
 let bodyParser = require("body-parser");
 
@@ -27,9 +26,8 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
 
-app.use("/user", UserRoutes);
-app.use("/project", ProjectRoutes);
-app.use("/task", TaskRoutes);
+app.use("/users", UserRoutes);
+app.use("/projects", ProjectRoutes);
 
 app.listen(PORT, () => {
   console.log(`Connect success on ${PORT} !!!`);

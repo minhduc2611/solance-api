@@ -18,6 +18,24 @@ const userController = {
       res.status(500).json(err);
     }
   },
+  updateUser: async (req, res) => {
+    try {
+      const updateUser = await User.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
+      res.status(200).json("User updated");
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  deleteUser: async (req, res) => {
+    try {
+      const deleteUser = await User.findOneAndDelete(req.params.id);
+      res.status(200).json(deleteUser);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = userController;
